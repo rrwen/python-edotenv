@@ -1,0 +1,2 @@
+call bin\uninstall_package
+call bin\install_package
