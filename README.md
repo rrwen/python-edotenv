@@ -6,7 +6,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/rrwen/python-edotenv.svg)](https://github.com/rrwen/python-edotenv/stargazers)
 [![GitHub](https://img.shields.io/github/license/rrwen/python-edotenv.svg)](https://github.com/rrwen/python-edotenv/blob/main/LICENSE)
   
-Save and load environmental variables using .env files.
+Save and load environmental variables using encrypted .env files.
 
 * [Documentation](https://rrwen.github.io/python-edotenv/)
 * [Developer Notes](https://github.com/rrwen/python-edotenv/blob/main/DEVELOPER.md)

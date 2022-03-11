@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# python_edotenv documentation build configuration file
+# edotenv documentation build configuration file
 #
 # This file is execfile() with the current directory set to its
 # containing dir.
@@ -21,11 +21,11 @@ from datetime import datetime
 
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../../python_edotenv'))
+sys.path.insert(0, os.path.abspath('../../edotenv'))
 
 author = 'Richard Wen rrwen.dev@gmail.com'
-project = 'python_edotenv'
-description = 'Save and load environmental variables using .env files'
+project = 'python-edotenv'
+description = 'Save and load environmental variables using encrypted .env files'
 copyright = str(datetime.now().year) + ', ' + 'Richard Wen'
 version = '0.0.0'
 release = version
@@ -122,7 +122,7 @@ html_theme_options = {
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'python_edotenv_doc'
+htmlhelp_basename = 'edotenv_doc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -149,7 +149,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'python_edotenv.tex', project.replace('_', '\\_') + ' Documentation',
+    (master_doc, 'edotenv.tex', project.replace('_', '\\_') + ' Documentation',
      author, 'manual'),
 ]
 
