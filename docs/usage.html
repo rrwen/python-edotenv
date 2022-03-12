@@ -47,7 +47,7 @@
   
   
   
-    <title>Usage &#8212; 0.0.0</title>
+    <title>Usage &#8212; 0.1.0</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/material.css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
@@ -66,7 +66,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="How it Works" href="howitworks.html" />
-    <link rel="prev" title="Install" href="install.html" />
+    <link rel="prev" title="Quick Start" href="quickstart.html" />
   
    
 
@@ -90,11 +90,11 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex navheader">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="index.html" title="0.0.0"
+        <a href="index.html" title="0.1.0"
            class="md-header-nav__button md-logo">
           
               <img src="_static/logo.svg" height="26"
-                   alt="0.0.0 logo">
+                   alt="0.1.0 logo">
           
         </a>
       </div>
@@ -177,7 +177,7 @@
   <nav class="md-tabs" data-md-component="tabs">
     <div class="md-tabs__inner md-grid">
       <ul class="md-tabs__list">
-          <li class="md-tabs__item"><a href="index.html" class="md-tabs__link">0.0.0</a></li>
+          <li class="md-tabs__item"><a href="index.html" class="md-tabs__link">0.1.0</a></li>
       </ul>
     </div>
   </nav>
@@ -189,13 +189,13 @@
               <div class="md-sidebar__inner">
                 <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="index.html" title="0.0.0" class="md-nav__button md-logo">
+    <a href="index.html" title="0.1.0" class="md-nav__button md-logo">
       
         <img src="_static/logo.svg" alt=" logo" width="48" height="48">
       
     </a>
     <a href="index.html"
-       title="0.0.0">python-edotenv</a>
+       title="0.1.0">python-edotenv</a>
   </label>
     <div class="md-nav__source">
       <a href="https://github.com/rrwen/python-edotenv/" title="Go to repository" class="md-source" data-md-source="github">
@@ -220,6 +220,13 @@
     
     
       <a href="install.html" class="md-nav__link">Install</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="quickstart.html" class="md-nav__link">Quick Start</a>
       
     
     </li>
@@ -311,6 +318,16 @@
             
   <section id="usage">
 <h1 id="usage--page-root">Usage<a class="headerlink" href="#usage--page-root" title="Permalink to this headline">¶</a></h1>
+<p>This section provides details and examples on how to use the package in Python.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By default, the key file is stored in the directory of the <code class="docutils literal notranslate"><span class="pre">python-dotenv</span></code> package.</p>
+<p>Change the parameter <code class="docutils literal notranslate"><span class="pre">key_path</span></code> in each function if another location is desired.</p>
+<p>For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dotenv_to_edotenv</span><span class="p">(</span><span class="s1">'.env'</span><span class="p">,</span> <span class="s1">'.env.encrypted'</span><span class="p">,</span> <span class="n">key_path</span><span class="o">=</span><span class="s1">'path/to/.env.key'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 <section id="encrypting-a-env-file">
 <h2 id="encrypting-a-env-file">Encrypting a .env File<a class="headerlink" href="#encrypting-a-env-file" title="Permalink to this headline">¶</a></h2>
 <p>To encrypt a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file, use the <a class="reference internal" href="reference/core.html#edotenv.core.dotenv_to_edotenv" title="edotenv.core.dotenv_to_edotenv"><code class="xref py py-func docutils literal notranslate"><span class="pre">edotenv.core.dotenv_to_edotenv()</span></code></a> function:</p>
@@ -318,13 +335,6 @@
 
 <span class="n">dotenv_to_edotenv</span><span class="p">(</span><span class="s1">'.env'</span><span class="p">,</span> <span class="s1">'.env.encrypted'</span><span class="p">)</span>
 </pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>By default, the key file is stored in the directory of the <code class="docutils literal notranslate"><span class="pre">python-dotenv</span></code> package, if you wish to store the key elsewhere, use:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dotenv_to_edotenv</span><span class="p">(</span><span class="s1">'.env'</span><span class="p">,</span> <span class="s1">'.env.encrypted'</span><span class="p">,</span> <span class="s1">'path/to/.env.key'</span><span class="p">)</span>
-</pre></div>
-</div>
 </div>
 </section>
 <section id="saving-variables-in-an-encrypted-env-file">
@@ -338,13 +348,6 @@
 <span class="n">save_edotenv</span><span class="p">(</span><span class="s1">'TESTINGA'</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>By default, the key file is stored in the directory of the <code class="docutils literal notranslate"><span class="pre">python-dotenv</span></code> package and uses <code class="docutils literal notranslate"><span class="pre">.env</span></code> as the encrypted file path, if you wish to store the key elsewhere or use a different file name, use:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">save_edotenv</span><span class="p">(</span><span class="s1">'TESTINGA'</span><span class="p">,</span> <span class="n">edotenv_path</span><span class="o">=</span><span class="s1">'.env.encrypted'</span><span class="p">,</span> <span class="n">key_path</span><span class="o">=</span><span class="s1">'.env.key'</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
 </section>
 <section id="loading-an-encrypted-env-file">
 <h2 id="loading-an-encrypted-env-file">Loading an Encrypted .env File<a class="headerlink" href="#loading-an-encrypted-env-file" title="Permalink to this headline">¶</a></h2>
@@ -355,13 +358,6 @@
 <span class="n">load_edotenv</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>By default, the key file is stored in the directory of the <code class="docutils literal notranslate"><span class="pre">python-dotenv</span></code> package, if you wish to store the key elsewhere, use:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">load_edotenv</span><span class="p">(</span><span class="n">key_path</span><span class="o">=</span><span class="s1">'.env.key'</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
 </section>
 <section id="decrypting-a-env-file">
 <h2 id="decrypting-a-env-file">Decrypting a .env File<a class="headerlink" href="#decrypting-a-env-file" title="Permalink to this headline">¶</a></h2>
@@ -370,13 +366,6 @@
 
 <span class="n">edotenv_to_dotenv</span><span class="p">(</span><span class="s1">'.env'</span><span class="p">,</span> <span class="s1">'.env.encrypted'</span><span class="p">)</span>
 </pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>By default, the key file is stored in the directory of the <code class="docutils literal notranslate"><span class="pre">python-dotenv</span></code> package, if you wish to store the key elsewhere, use:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">edotenv_to_dotenv</span><span class="p">(</span><span class="s1">'.env'</span><span class="p">,</span> <span class="s1">'.env.encrypted'</span><span class="p">,</span> <span class="s1">'path/to/.env.key'</span><span class="p">)</span>
-</pre></div>
-</div>
 </div>
 </section>
 </section>
@@ -391,7 +380,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
           
-            <a href="install.html" title="Install"
+            <a href="quickstart.html" title="Quick Start"
                class="md-flex md-footer-nav__link md-footer-nav__link--prev"
                rel="prev">
               <div class="md-flex__cell md-flex__cell--shrink">
@@ -400,7 +389,7 @@
               <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
                 <span class="md-flex__ellipsis">
                   <span
-                      class="md-footer-nav__direction"> Previous </span> Install </span>
+                      class="md-footer-nav__direction"> Previous </span> Quick Start </span>
               </div>
             </a>
           

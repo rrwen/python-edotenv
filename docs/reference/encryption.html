@@ -47,7 +47,7 @@
   
   
   
-    <title>encryption &#8212; 0.0.0</title>
+    <title>encryption &#8212; 0.1.0</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/material.css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -89,11 +89,11 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex navheader">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../index.html" title="0.0.0"
+        <a href="../index.html" title="0.1.0"
            class="md-header-nav__button md-logo">
           
               <img src="../_static/logo.svg" height="26"
-                   alt="0.0.0 logo">
+                   alt="0.1.0 logo">
           
         </a>
       </div>
@@ -176,7 +176,7 @@
   <nav class="md-tabs" data-md-component="tabs">
     <div class="md-tabs__inner md-grid">
       <ul class="md-tabs__list">
-          <li class="md-tabs__item"><a href="../index.html" class="md-tabs__link">0.0.0</a></li>
+          <li class="md-tabs__item"><a href="../index.html" class="md-tabs__link">0.1.0</a></li>
           <li class="md-tabs__item"><a href="index.html" class="md-tabs__link">API Reference</a></li>
       </ul>
     </div>
@@ -189,13 +189,13 @@
               <div class="md-sidebar__inner">
                 <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../index.html" title="0.0.0" class="md-nav__button md-logo">
+    <a href="../index.html" title="0.1.0" class="md-nav__button md-logo">
       
         <img src="../_static/logo.svg" alt=" logo" width="48" height="48">
       
     </a>
     <a href="../index.html"
-       title="0.0.0">python-edotenv</a>
+       title="0.1.0">python-edotenv</a>
   </label>
     <div class="md-nav__source">
       <a href="https://github.com/rrwen/python-edotenv/" title="Go to repository" class="md-source" data-md-source="github">
@@ -265,6 +265,8 @@
         <li class="md-nav__item"><a href="#encrypt" class="md-nav__link">encrypt</a>
         </li>
         <li class="md-nav__item"><a href="#gen-key" class="md-nav__link">gen_key</a>
+        </li>
+        <li class="md-nav__item"><a href="#read-key-file" class="md-nav__link">read_key_file</a>
         </li></ul>
             </nav>
         </li>
@@ -299,6 +301,12 @@
 <li><p><strong>encoding</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Encoding used to decode the <code class="docutils literal notranslate"><span class="pre">target</span></code> from bytes if <code class="docutils literal notranslate"><span class="pre">decode</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The decrypted string.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)">str</a></p>
+</dd>
 </dl>
 <p class="rubric">Example</p>
 <div class="jupyter_cell jupyter_container docutils container">
@@ -318,7 +326,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>encrypted: b'gAAAAABiKuriTGQn7s9FIXCdg9LK520ZYq-W8wcrvrPXLclSnVsQhcAzEZdfXp8lZVa6i_K9CfjBT0dnZqV_CbDHR9ibxvu6SslrO416nq3iajGamf-3Z0g='
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>encrypted: b'gAAAAABiLA42WGZXr0z-wiph8RCPyqA2SCyDPu_fH_2zBiYBKgHM0vQ01lRmyRASyqGeP1j-r_6a11wz8rtj1mA4Vq0JUA1pFwyOQaGY1i77NByYBM7jNSA='
 decrypted: Encryption time!
 </pre></div>
 </div>
@@ -341,6 +349,12 @@ decrypted: Encryption time!
 <li><p><strong>encoding</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Encoding used to convert the <code class="docutils literal notranslate"><span class="pre">target</span></code> to bytes if <code class="docutils literal notranslate"><span class="pre">to_bytes</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The encrypted string as bytes.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.10)">bytes</a></p>
+</dd>
 </dl>
 <p class="rubric">Example</p>
 <div class="jupyter_cell jupyter_container docutils container">
@@ -355,7 +369,7 @@ decrypted: Encryption time!
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>b'gAAAAABiKurilcYz5OV9Ntp7tHcYQFXKqPtrbDqm2Yxh59V9xvDxrRqE39ZW-dFWVm16lx4KMFhbpjvBbmuolHifa3NN_yZ0DEeM4vfzT-RrDdFf9G3DRJ4='
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>b'gAAAAABiLA42eg5luL4t65YczowBmJAAblTBOXf2xnRY_LcKKz2eeCO-x7u-YjTx6wWxfzSezqfUPGSEqzulfu2heM-zNE4clSPkwzHZE0pZztGUKP4FRCc='
 </pre></div>
 </div>
 </div>
@@ -368,6 +382,14 @@ decrypted: Encryption time!
 <dt class="sig sig-object py" id="edotenv.encryption.gen_key">
 <span class="sig-prename descclassname"><span class="pre">edotenv.encryption.</span></span><span class="sig-name descname"><span class="pre">gen_key</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edotenv/encryption.html#gen_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edotenv.encryption.gen_key" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a key for encryption and decryption.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Key for encrypting and decrypting.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.10)">bytes</a></p>
+</dd>
+</dl>
 <p class="rubric">Example</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
@@ -379,7 +401,54 @@ decrypted: Encryption time!
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>b'KizVmE1D9mP2T-WrE3ozaDRKtYK1QzDDNYXsssrCjMM='
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>b'1PIoNPSUSijMixzkcjBrxbHk3HW9lHdYWm2w4cXip_I='
+</pre></div>
+</div>
+</div>
+</div>
+</dd></dl>
+</section>
+<section id="read-key-file">
+<h2 id="read-key-file">read_key_file<a class="headerlink" href="#read-key-file" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="edotenv.encryption.read_key_file">
+<span class="sig-prename descclassname"><span class="pre">edotenv.encryption.</span></span><span class="sig-name descname"><span class="pre">read_key_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">create_if_not_exists</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edotenv/encryption.html#read_key_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edotenv.encryption.read_key_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a key file or create one if it does not exist.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em> or </em><em>None</em>) – <p>The path to the key used to encrypt and decrypt the .env file.</p>
+<ul>
+<li><p>If the file does not exist, then a key file will be automatically generated</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">None</span></code>, defaults to a file inside the package’s directory</p></li>
+</ul>
+</p></li>
+<li><p><strong>create_if_not_exists</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – Whether to generate a new key and create the key file if it does not exist.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Key for encrypting and decrypting from the key file.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.10)">bytes</a></p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tempfile</span>
+
+<span class="kn">from</span> <span class="nn">edotenv.encryption</span> <span class="kn">import</span> <span class="n">read_key_file</span>
+
+<span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">folder</span><span class="p">:</span>
+    <span class="n">key_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">folder</span><span class="si">}</span><span class="s1">/.env.key'</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">read_key_file</span><span class="p">(</span><span class="n">key_path</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>b'hrPAtnzhxEfQ1J2jQX6L8Yv6ZDZbLhXajoLwn2AAxQs='
 </pre></div>
 </div>
 </div>

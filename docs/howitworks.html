@@ -47,7 +47,7 @@
   
   
   
-    <title>How it Works &#8212; 0.0.0</title>
+    <title>How it Works &#8212; 0.1.0</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/material.css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
@@ -90,11 +90,11 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex navheader">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="index.html" title="0.0.0"
+        <a href="index.html" title="0.1.0"
            class="md-header-nav__button md-logo">
           
               <img src="_static/logo.svg" height="26"
-                   alt="0.0.0 logo">
+                   alt="0.1.0 logo">
           
         </a>
       </div>
@@ -177,7 +177,7 @@
   <nav class="md-tabs" data-md-component="tabs">
     <div class="md-tabs__inner md-grid">
       <ul class="md-tabs__list">
-          <li class="md-tabs__item"><a href="index.html" class="md-tabs__link">0.0.0</a></li>
+          <li class="md-tabs__item"><a href="index.html" class="md-tabs__link">0.1.0</a></li>
       </ul>
     </div>
   </nav>
@@ -189,13 +189,13 @@
               <div class="md-sidebar__inner">
                 <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="index.html" title="0.0.0" class="md-nav__button md-logo">
+    <a href="index.html" title="0.1.0" class="md-nav__button md-logo">
       
         <img src="_static/logo.svg" alt=" logo" width="48" height="48">
       
     </a>
     <a href="index.html"
-       title="0.0.0">python-edotenv</a>
+       title="0.1.0">python-edotenv</a>
   </label>
     <div class="md-nav__source">
       <a href="https://github.com/rrwen/python-edotenv/" title="Go to repository" class="md-source" data-md-source="github">
@@ -220,6 +220,13 @@
     
     
       <a href="install.html" class="md-nav__link">Install</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="quickstart.html" class="md-nav__link">Quick Start</a>
       
     
     </li>
@@ -286,22 +293,30 @@
   <section id="how-it-works">
 <h1 id="howitworks--page-root">How it Works<a class="headerlink" href="#howitworks--page-root" title="Permalink to this headline">¶</a></h1>
 <p>This package uses <a class="reference external" href="https://pypi.org/project/python-dotenv/0.19.2/">python-dotenv</a> to read and load environmental variables from <code class="docutils literal notranslate"><span class="pre">.env</span></code> files, and <a class="reference external" href="https://pypi.org/project/cryptography/">cryptography</a> for encrypting and decrypting <code class="docutils literal notranslate"><span class="pre">.env</span></code> files.</p>
+<p>The purpose of this package is to avoid plain text <code class="docutils literal notranslate"><span class="pre">.env</span></code> files by encrypting them, which can be useful in cases where the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file is shared unintentionally (e.g. committed by accident, forgot to remove before sending in an email, malicious access when leaving computer unattended).</p>
+<p>The scope of this package is limited to:</p>
+<ol class="arabic simple">
+<li><p>Encrypting/decrypting <code class="docutils literal notranslate"><span class="pre">.env</span></code> files with a randomly generated key</p></li>
+<li><p>Loading environmental variables from encrypted <code class="docutils literal notranslate"><span class="pre">.env</span></code> files into Python</p></li>
+<li><p>Saving environmental variables from Python into encrypted <code class="docutils literal notranslate"><span class="pre">.env</span></code> files</p></li>
+</ol>
 <div class="graphviz"><img alt='digraph methods {
 rankdir = LR;
 
 file[label=".env" shape=oval];
-dotenv[label="dotenv" shape=rect];
-cryptography[label="cryptography" shape=rect];
+dotenv[label="dotenv (pkg)" shape=rect];
+cryptography[label="cryptography (pkg)" shape=rect];
 
 subgraph cluster0 {
-   label=&lt; &lt;B&gt;edotenv&lt;/B&gt; &gt;;
+   label=&lt; &lt;B&gt;edotenv (pkg)&lt;/B&gt; &gt;;
    style=rounded;
 
-   file -&gt; dotenv [label="read/load"];
-   dotenv -&gt; cryptography [label="encrypt"];
-   cryptography -&gt; file [label="decrypt"];
+   file -&gt; dotenv [label=&lt;&lt;I&gt;read/load&lt;/I&gt;&gt;];
+   dotenv -&gt; cryptography [label=&lt;&lt;I&gt;encrypt&lt;/I&gt;&gt;];
+   cryptography -&gt; file [label=&lt;&lt;I&gt;decrypt&lt;/I&gt;&gt;];
 }
-}' class="graphviz" src="_images/graphviz-c3e4e7c29485ac090e39da316331e742e4afb957.png"/></div>
+}' class="graphviz" src="_images/graphviz-e57b976569f66e4a9bf10a9ddfb093679296bb1c.png"/></div>
+<p>For more details, see the <a class="reference external" href="./reference/index.html">API Reference</a> for source code and documentation.</p>
 </section>
 
 

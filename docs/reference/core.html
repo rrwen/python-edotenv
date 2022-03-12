@@ -47,7 +47,7 @@
   
   
   
-    <title>core &#8212; 0.0.0</title>
+    <title>core &#8212; 0.1.0</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/material.css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -66,7 +66,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="encryption" href="encryption.html" />
-    <link rel="prev" title="API Reference" href="index.html" />
+    <link rel="prev" title="cli" href="cli.html" />
   
    
 
@@ -90,11 +90,11 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex navheader">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../index.html" title="0.0.0"
+        <a href="../index.html" title="0.1.0"
            class="md-header-nav__button md-logo">
           
               <img src="../_static/logo.svg" height="26"
-                   alt="0.0.0 logo">
+                   alt="0.1.0 logo">
           
         </a>
       </div>
@@ -177,7 +177,7 @@
   <nav class="md-tabs" data-md-component="tabs">
     <div class="md-tabs__inner md-grid">
       <ul class="md-tabs__list">
-          <li class="md-tabs__item"><a href="../index.html" class="md-tabs__link">0.0.0</a></li>
+          <li class="md-tabs__item"><a href="../index.html" class="md-tabs__link">0.1.0</a></li>
           <li class="md-tabs__item"><a href="index.html" class="md-tabs__link">API Reference</a></li>
       </ul>
     </div>
@@ -190,13 +190,13 @@
               <div class="md-sidebar__inner">
                 <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../index.html" title="0.0.0" class="md-nav__button md-logo">
+    <a href="../index.html" title="0.1.0" class="md-nav__button md-logo">
       
         <img src="../_static/logo.svg" alt=" logo" width="48" height="48">
       
     </a>
     <a href="../index.html"
-       title="0.0.0">python-edotenv</a>
+       title="0.1.0">python-edotenv</a>
   </label>
     <div class="md-nav__source">
       <a href="https://github.com/rrwen/python-edotenv/" title="Go to repository" class="md-source" data-md-source="github">
@@ -298,7 +298,12 @@
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>dotenv_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The path of the .env file.</p></li>
 <li><p><strong>edotenv_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The path of the encrypted .env file.</p></li>
-<li><p><strong>key_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em> or </em><em>None</em>) – The path to the key used to encrypt and decrypt the .env file. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, defaults to a file inside the package’s directory.</p></li>
+<li><p><strong>key_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em> or </em><em>None</em>) – <p>The path to the key used to encrypt and decrypt the .env file.</p>
+<ul>
+<li><p>If the file does not exist, then a key file will be automatically generated</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">None</span></code>, defaults to a file inside the package’s directory</p></li>
+</ul>
+</p></li>
 <li><p><strong>*args</strong> – Additional arguments passed to <a class="reference external" href="https://saurabh-kumar.com/python-dotenv/reference/dotenv/main/#dotenv_values">dotenv.dotenv_values</a>.</p></li>
 <li><p><strong>**kwargs</strong> – <p>Additional arguments passed to <a class="reference external" href="https://saurabh-kumar.com/python-dotenv/reference/dotenv/main/#dotenv_values">dotenv.dotenv_values</a>.</p>
 </p></li>
@@ -366,7 +371,12 @@ TESTINGB value (loaded): testingb123
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>dotenv_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The path of the .env file.</p></li>
 <li><p><strong>edotenv_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The path of the encrypted .env file.</p></li>
-<li><p><strong>key_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em> or </em><em>None</em>) – The path to the key used to encrypt and decrypt the .env file. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, defaults to a file inside the package’s directory.</p></li>
+<li><p><strong>key_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em> or </em><em>None</em>) – <p>The path to the key used to encrypt and decrypt the .env file.</p>
+<ul>
+<li><p>If the file does not exist, then a key file will be automatically generated</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">None</span></code>, defaults to a file inside the package’s directory</p></li>
+</ul>
+</p></li>
 </ul>
 </dd>
 </dl>
@@ -523,7 +533,12 @@ TESTINGB value (loaded): testingb123
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>edotenv_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The path of the encrypted .env file.</p></li>
-<li><p><strong>key_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em> or </em><em>None</em>) – The path to the key used to encrypt and decrypt the .env file. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, defaults to a file inside the package’s directory.</p></li>
+<li><p><strong>key_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em> or </em><em>None</em>) – <p>The path to the key used to encrypt and decrypt the .env file.</p>
+<ul>
+<li><p>If the file does not exist, then a key file will be automatically generated</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">None</span></code>, defaults to a file inside the package’s directory</p></li>
+</ul>
+</p></li>
 <li><p><strong>vars</strong> (<em>str OR list</em>) – A list of the environmental variable names to save into the encrypted .env file.</p></li>
 </ul>
 </dd>
@@ -590,7 +605,7 @@ TESTINGB value (after save): testingb123
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
           
-            <a href="index.html" title="API Reference"
+            <a href="cli.html" title="cli"
                class="md-flex md-footer-nav__link md-footer-nav__link--prev"
                rel="prev">
               <div class="md-flex__cell md-flex__cell--shrink">
@@ -599,7 +614,7 @@ TESTINGB value (after save): testingb123
               <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
                 <span class="md-flex__ellipsis">
                   <span
-                      class="md-footer-nav__direction"> Previous </span> API Reference </span>
+                      class="md-footer-nav__direction"> Previous </span> cli </span>
               </div>
             </a>
           

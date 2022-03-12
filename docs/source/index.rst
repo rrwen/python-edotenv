@@ -16,6 +16,7 @@ Richard Wen <rrwen.dev@gmail.com>
    :hidden:
 
    install
+   quickstart
    usage
    howitworks
    reference/index

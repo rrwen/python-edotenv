@@ -5,8 +5,6 @@ from io import StringIO
 
 from .encryption import *
 
-__PATH__ = os.path.dirname(os.path.abspath(__file__))
-
 def dotenv_to_edotenv(dotenv_path='.env', edotenv_path='.env', key_path=None, *args, **kwargs):
     """
     Encrypt a .env file.
@@ -18,7 +16,11 @@ def dotenv_to_edotenv(dotenv_path='.env', edotenv_path='.env', key_path=None, *a
     edotenv_path : str
         The path of the encrypted .env file.
     key_path : str or None
-        The path to the key used to encrypt and decrypt the .env file. If ``None``, defaults to a file inside the package's directory.
+        The path to the key used to encrypt and decrypt the .env file.
+        
+        * If the file does not exist, then a key file will be automatically generated
+        * If ``None``, defaults to a file inside the package's directory
+
     *args, **kwargs
         Additional arguments passed to `dotenv.dotenv_values <https://saurabh-kumar.com/python-dotenv/reference/dotenv/main/#dotenv_values>`_.
 
@@ -65,18 +67,13 @@ def dotenv_to_edotenv(dotenv_path='.env', edotenv_path='.env', key_path=None, *a
     values = dotenv_values(dotenv_path, *args, **kwargs)
     data = '\n'.join([v + '=' + values[v] for v in values])
 
-    # Encrypt .env file data
-    key = gen_key()
-    edata = encrypt(data, key)
+    # Get the key from file or gen key file if not exists
+    key = read_key_file(key_path)
 
     # Save encrypted .env file
+    edata = encrypt(data, key)
     with open(edotenv_path, 'wb') as edotenv_file:
         edotenv_file.write(edata)
-    
-    # Save key file
-    key_path = key_path if key_path else os.path.join(__PATH__, '.env.key')
-    with open(key_path, 'wb') as key_file:
-        key_file.write(key)
 
 def edotenv_to_dotenv(dotenv_path='.env', edotenv_path='.env', key_path=None, *args, **kwargs):
     """
@@ -89,7 +86,10 @@ def edotenv_to_dotenv(dotenv_path='.env', edotenv_path='.env', key_path=None, *a
     edotenv_path : str
         The path of the encrypted .env file.
     key_path : str or None
-        The path to the key used to encrypt and decrypt the .env file. If ``None``, defaults to a file inside the package's directory.
+        The path to the key used to encrypt and decrypt the .env file.
+        
+        * If the file does not exist, then a key file will be automatically generated
+        * If ``None``, defaults to a file inside the package's directory
 
     Example
     -------
@@ -156,10 +156,8 @@ def edotenv_to_dotenv(dotenv_path='.env', edotenv_path='.env', key_path=None, *a
     with open(edotenv_path, 'rb') as edotenv_file:
         edata = edotenv_file.read()
 
-    # Read key file
-    key_path = key_path if key_path else os.path.join(__PATH__, '.env.key')
-    with open(key_path, 'rb') as key_file:
-        key = key_file.read()
+    # Get the key from file or gen key file if not exists
+    key = read_key_file(key_path)
 
     # Decrypt env vars and save to .env file
     data = decrypt(edata, key)
@@ -222,10 +220,8 @@ def load_edotenv(edotenv_path='.env', key_path=None, *args, **kwargs):
     with open(edotenv_path, 'rb') as edotenv_file:
         edata = edotenv_file.read()
 
-    # Read key file
-    key_path = key_path if key_path else os.path.join(__PATH__, '.env.key')
-    with open(key_path, 'rb') as key_file:
-        key = key_file.read()
+    # Get the key from file or gen key file if not exists
+    key = read_key_file(key_path, create_if_not_exists=False)
     
     # Decrypt env vars and load them
     data = decrypt(edata, key)
@@ -241,7 +237,11 @@ def save_edotenv(vars, edotenv_path='.env', key_path=None):
     edotenv_path : str
         The path of the encrypted .env file.
     key_path : str or None
-        The path to the key used to encrypt and decrypt the .env file. If ``None``, defaults to a file inside the package's directory.
+        The path to the key used to encrypt and decrypt the .env file.
+        
+        * If the file does not exist, then a key file will be automatically generated
+        * If ``None``, defaults to a file inside the package's directory
+
     vars : str OR list
         A list of the environmental variable names to save into the encrypted .env file.
 
@@ -283,9 +283,11 @@ def save_edotenv(vars, edotenv_path='.env', key_path=None):
             print('TESTINGA value (after save): ' + str(os.environ['TESTINGA']))
             print('TESTINGB value (after save): ' + str(os.environ['TESTINGB']))
     """
+
+    # Get the key from file or gen key file if not exists
+    key = read_key_file(key_path)
     
     # Get and encrypt env vars
-    key = gen_key()
     vars = vars if isinstance(vars, list) else [vars]
     data = '\n'.join([v + '=' + str(os.environ[v]) for v in vars])
     edata = encrypt(data, key)
@@ -293,8 +295,4 @@ def save_edotenv(vars, edotenv_path='.env', key_path=None):
     # Save encrypted .env file
     with open(edotenv_path, 'wb') as edotenv_file:
         edotenv_file.write(edata)
-    
-    # Save key file
-    key_path = key_path if key_path else os.path.join(__PATH__, '.env.key')
-    with open(key_path, 'wb') as key_file:
-        key_file.write(key)
+        

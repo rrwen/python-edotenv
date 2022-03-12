@@ -46,7 +46,7 @@
   
   
   
-    <title>edotenv.encryption &#8212; 0.0.0</title>
+    <title>edotenv.encryption &#8212; 0.1.0</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/material.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
@@ -87,11 +87,11 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex navheader">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../../index.html" title="0.0.0"
+        <a href="../../index.html" title="0.1.0"
            class="md-header-nav__button md-logo">
           
               <img src="../../_static/logo.svg" height="26"
-                   alt="0.0.0 logo">
+                   alt="0.1.0 logo">
           
         </a>
       </div>
@@ -174,7 +174,7 @@
   <nav class="md-tabs" data-md-component="tabs">
     <div class="md-tabs__inner md-grid">
       <ul class="md-tabs__list">
-          <li class="md-tabs__item"><a href="../../index.html" class="md-tabs__link">0.0.0</a></li>
+          <li class="md-tabs__item"><a href="../../index.html" class="md-tabs__link">0.1.0</a></li>
           <li class="md-tabs__item"><a href="../index.html" class="md-tabs__link">Module code</a></li>
       </ul>
     </div>
@@ -187,13 +187,13 @@
               <div class="md-sidebar__inner">
                 <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../../index.html" title="0.0.0" class="md-nav__button md-logo">
+    <a href="../../index.html" title="0.1.0" class="md-nav__button md-logo">
       
         <img src="../../_static/logo.svg" alt=" logo" width="48" height="48">
       
     </a>
     <a href="../../index.html"
-       title="0.0.0">python-edotenv</a>
+       title="0.1.0">python-edotenv</a>
   </label>
     <div class="md-nav__source">
       <a href="https://github.com/rrwen/python-edotenv/" title="Go to repository" class="md-source" data-md-source="github">
@@ -269,7 +269,11 @@
           <article class="md-content__inner md-typeset" role="main">
             
   <h1 id="modules-edotenv-encryption--page-root">Source code for edotenv.encryption</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">cryptography.fernet</span> <span class="kn">import</span> <span class="n">Fernet</span>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">cryptography.fernet</span> <span class="kn">import</span> <span class="n">Fernet</span>
+
+<span class="n">__PATH__</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
 
 <div class="viewcode-block" id="decrypt"><a class="viewcode-back" href="../../reference/encryption.html#edotenv.encryption.decrypt">[docs]</a><span class="k">def</span> <span class="nf">decrypt</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">decode</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">'utf8'</span><span class="p">):</span>
     <span class="sd">"""</span>
@@ -285,6 +289,11 @@
 <span class="sd">        Whether to decode the ``target`` from bytes after decryption or not.</span>
 <span class="sd">    encoding : str</span>
 <span class="sd">        Encoding used to decode the ``target`` from bytes if ``decode`` is ``True``.</span>
+
+<span class="sd">    Return</span>
+<span class="sd">    ------</span>
+<span class="sd">    str</span>
+<span class="sd">        The decrypted string.</span>
 
 <span class="sd">    Example</span>
 <span class="sd">    -------</span>
@@ -322,6 +331,11 @@
 <span class="sd">    encoding : str</span>
 <span class="sd">        Encoding used to convert the ``target`` to bytes if ``to_bytes`` is ``True``.</span>
 
+<span class="sd">    Return</span>
+<span class="sd">    ------</span>
+<span class="sd">    bytes</span>
+<span class="sd">        The encrypted string as bytes.</span>
+
 <span class="sd">    Example</span>
 <span class="sd">    -------</span>
 <span class="sd">    .. jupyter-execute::</span>
@@ -342,6 +356,11 @@
     <span class="sd">"""</span>
 <span class="sd">    Generate a key for encryption and decryption.</span>
 
+<span class="sd">    Return</span>
+<span class="sd">    ------</span>
+<span class="sd">    bytes</span>
+<span class="sd">        Key for encrypting and decrypting.</span>
+
 <span class="sd">    Example</span>
 <span class="sd">    -------</span>
 <span class="sd">    .. jupyter-execute::</span>
@@ -350,9 +369,61 @@
 
 <span class="sd">        key = gen_key()</span>
 <span class="sd">        print(key)</span>
-
 <span class="sd">    """</span>
     <span class="n">out</span> <span class="o">=</span> <span class="n">Fernet</span><span class="o">.</span><span class="n">generate_key</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">out</span></div>
+
+<div class="viewcode-block" id="read_key_file"><a class="viewcode-back" href="../../reference/encryption.html#edotenv.encryption.read_key_file">[docs]</a><span class="k">def</span> <span class="nf">read_key_file</span><span class="p">(</span><span class="n">key_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">create_if_not_exists</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Read a key file or create one if it does not exist.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    key_path : str or None</span>
+<span class="sd">        The path to the key used to encrypt and decrypt the .env file.</span>
+<span class="sd">        </span>
+<span class="sd">        * If the file does not exist, then a key file will be automatically generated</span>
+<span class="sd">        * If ``None``, defaults to a file inside the package's directory</span>
+<span class="sd">    </span>
+<span class="sd">    create_if_not_exists : bool</span>
+<span class="sd">        Whether to generate a new key and create the key file if it does not exist.</span>
+
+<span class="sd">    Return</span>
+<span class="sd">    ------</span>
+<span class="sd">    bytes</span>
+<span class="sd">        Key for encrypting and decrypting from the key file.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    .. jupyter-execute::</span>
+
+<span class="sd">        import tempfile</span>
+
+<span class="sd">        from edotenv.encryption import read_key_file</span>
+<span class="sd">        </span>
+<span class="sd">        with tempfile.TemporaryDirectory() as folder:</span>
+<span class="sd">            key_path = f'{folder}/.env.key'</span>
+<span class="sd">            key = read_key_file(key_path)</span>
+<span class="sd">            print(key)</span>
+<span class="sd">    """</span>
+
+    <span class="c1"># Get the key path or use default at package dir if None</span>
+    <span class="n">key_path</span> <span class="o">=</span> <span class="n">key_path</span> <span class="k">if</span> <span class="n">key_path</span> <span class="k">else</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">__PATH__</span><span class="p">,</span> <span class="s1">'.env.key'</span><span class="p">)</span>
+
+    <span class="c1"># Read key from key file</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">key_path</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">key_path</span><span class="p">,</span> <span class="s1">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">key_file</span><span class="p">:</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">key_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+    <span class="c1"># Gen key and save key file</span>
+    <span class="k">elif</span> <span class="n">create_if_not_exists</span><span class="p">:</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">gen_key</span><span class="p">()</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">key_path</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">key_file</span><span class="p">:</span>
+            <span class="n">key_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+    
+    <span class="c1"># Key file does not exist</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Key file at "</span><span class="si">{</span><span class="n">key_path</span><span class="si">}</span><span class="s1">" does not exist'</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">out</span></div>
 </pre></div>
 

@@ -46,7 +46,7 @@
   
   
   
-    <title>edotenv.core &#8212; 0.0.0</title>
+    <title>edotenv.core &#8212; 0.1.0</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/material.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
@@ -87,11 +87,11 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex navheader">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../../index.html" title="0.0.0"
+        <a href="../../index.html" title="0.1.0"
            class="md-header-nav__button md-logo">
           
               <img src="../../_static/logo.svg" height="26"
-                   alt="0.0.0 logo">
+                   alt="0.1.0 logo">
           
         </a>
       </div>
@@ -174,7 +174,7 @@
   <nav class="md-tabs" data-md-component="tabs">
     <div class="md-tabs__inner md-grid">
       <ul class="md-tabs__list">
-          <li class="md-tabs__item"><a href="../../index.html" class="md-tabs__link">0.0.0</a></li>
+          <li class="md-tabs__item"><a href="../../index.html" class="md-tabs__link">0.1.0</a></li>
           <li class="md-tabs__item"><a href="../index.html" class="md-tabs__link">Module code</a></li>
       </ul>
     </div>
@@ -187,13 +187,13 @@
               <div class="md-sidebar__inner">
                 <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../../index.html" title="0.0.0" class="md-nav__button md-logo">
+    <a href="../../index.html" title="0.1.0" class="md-nav__button md-logo">
       
         <img src="../../_static/logo.svg" alt=" logo" width="48" height="48">
       
     </a>
     <a href="../../index.html"
-       title="0.0.0">python-edotenv</a>
+       title="0.1.0">python-edotenv</a>
   </label>
     <div class="md-nav__source">
       <a href="https://github.com/rrwen/python-edotenv/" title="Go to repository" class="md-source" data-md-source="github">
@@ -276,8 +276,6 @@
 
 <span class="kn">from</span> <span class="nn">.encryption</span> <span class="kn">import</span> <span class="o">*</span>
 
-<span class="n">__PATH__</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
-
 <div class="viewcode-block" id="dotenv_to_edotenv"><a class="viewcode-back" href="../../reference/core.html#edotenv.core.dotenv_to_edotenv">[docs]</a><span class="k">def</span> <span class="nf">dotenv_to_edotenv</span><span class="p">(</span><span class="n">dotenv_path</span><span class="o">=</span><span class="s1">'.env'</span><span class="p">,</span> <span class="n">edotenv_path</span><span class="o">=</span><span class="s1">'.env'</span><span class="p">,</span> <span class="n">key_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">"""</span>
 <span class="sd">    Encrypt a .env file.</span>
@@ -289,7 +287,11 @@
 <span class="sd">    edotenv_path : str</span>
 <span class="sd">        The path of the encrypted .env file.</span>
 <span class="sd">    key_path : str or None</span>
-<span class="sd">        The path to the key used to encrypt and decrypt the .env file. If ``None``, defaults to a file inside the package's directory.</span>
+<span class="sd">        The path to the key used to encrypt and decrypt the .env file.</span>
+<span class="sd">        </span>
+<span class="sd">        * If the file does not exist, then a key file will be automatically generated</span>
+<span class="sd">        * If ``None``, defaults to a file inside the package's directory</span>
+
 <span class="sd">    *args, **kwargs</span>
 <span class="sd">        Additional arguments passed to `dotenv.dotenv_values &lt;https://saurabh-kumar.com/python-dotenv/reference/dotenv/main/#dotenv_values&gt;`_.</span>
 
@@ -336,18 +338,13 @@
     <span class="n">values</span> <span class="o">=</span> <span class="n">dotenv_values</span><span class="p">(</span><span class="n">dotenv_path</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="n">data</span> <span class="o">=</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">v</span> <span class="o">+</span> <span class="s1">'='</span> <span class="o">+</span> <span class="n">values</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">values</span><span class="p">])</span>
 
-    <span class="c1"># Encrypt .env file data</span>
-    <span class="n">key</span> <span class="o">=</span> <span class="n">gen_key</span><span class="p">()</span>
-    <span class="n">edata</span> <span class="o">=</span> <span class="n">encrypt</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+    <span class="c1"># Get the key from file or gen key file if not exists</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">read_key_file</span><span class="p">(</span><span class="n">key_path</span><span class="p">)</span>
 
     <span class="c1"># Save encrypted .env file</span>
+    <span class="n">edata</span> <span class="o">=</span> <span class="n">encrypt</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">edotenv_path</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">edotenv_file</span><span class="p">:</span>
-        <span class="n">edotenv_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">edata</span><span class="p">)</span>
-    
-    <span class="c1"># Save key file</span>
-    <span class="n">key_path</span> <span class="o">=</span> <span class="n">key_path</span> <span class="k">if</span> <span class="n">key_path</span> <span class="k">else</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">__PATH__</span><span class="p">,</span> <span class="s1">'.env.key'</span><span class="p">)</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">key_path</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">key_file</span><span class="p">:</span>
-        <span class="n">key_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></div>
+        <span class="n">edotenv_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">edata</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="edotenv_to_dotenv"><a class="viewcode-back" href="../../reference/core.html#edotenv.core.edotenv_to_dotenv">[docs]</a><span class="k">def</span> <span class="nf">edotenv_to_dotenv</span><span class="p">(</span><span class="n">dotenv_path</span><span class="o">=</span><span class="s1">'.env'</span><span class="p">,</span> <span class="n">edotenv_path</span><span class="o">=</span><span class="s1">'.env'</span><span class="p">,</span> <span class="n">key_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">"""</span>
@@ -360,7 +357,10 @@
 <span class="sd">    edotenv_path : str</span>
 <span class="sd">        The path of the encrypted .env file.</span>
 <span class="sd">    key_path : str or None</span>
-<span class="sd">        The path to the key used to encrypt and decrypt the .env file. If ``None``, defaults to a file inside the package's directory.</span>
+<span class="sd">        The path to the key used to encrypt and decrypt the .env file.</span>
+<span class="sd">        </span>
+<span class="sd">        * If the file does not exist, then a key file will be automatically generated</span>
+<span class="sd">        * If ``None``, defaults to a file inside the package's directory</span>
 
 <span class="sd">    Example</span>
 <span class="sd">    -------</span>
@@ -427,10 +427,8 @@
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">edotenv_path</span><span class="p">,</span> <span class="s1">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">edotenv_file</span><span class="p">:</span>
         <span class="n">edata</span> <span class="o">=</span> <span class="n">edotenv_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
-    <span class="c1"># Read key file</span>
-    <span class="n">key_path</span> <span class="o">=</span> <span class="n">key_path</span> <span class="k">if</span> <span class="n">key_path</span> <span class="k">else</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">__PATH__</span><span class="p">,</span> <span class="s1">'.env.key'</span><span class="p">)</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">key_path</span><span class="p">,</span> <span class="s1">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">key_file</span><span class="p">:</span>
-        <span class="n">key</span> <span class="o">=</span> <span class="n">key_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="c1"># Get the key from file or gen key file if not exists</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">read_key_file</span><span class="p">(</span><span class="n">key_path</span><span class="p">)</span>
 
     <span class="c1"># Decrypt env vars and save to .env file</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">decrypt</span><span class="p">(</span><span class="n">edata</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
@@ -493,10 +491,8 @@
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">edotenv_path</span><span class="p">,</span> <span class="s1">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">edotenv_file</span><span class="p">:</span>
         <span class="n">edata</span> <span class="o">=</span> <span class="n">edotenv_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
-    <span class="c1"># Read key file</span>
-    <span class="n">key_path</span> <span class="o">=</span> <span class="n">key_path</span> <span class="k">if</span> <span class="n">key_path</span> <span class="k">else</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">__PATH__</span><span class="p">,</span> <span class="s1">'.env.key'</span><span class="p">)</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">key_path</span><span class="p">,</span> <span class="s1">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">key_file</span><span class="p">:</span>
-        <span class="n">key</span> <span class="o">=</span> <span class="n">key_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="c1"># Get the key from file or gen key file if not exists</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">read_key_file</span><span class="p">(</span><span class="n">key_path</span><span class="p">,</span> <span class="n">create_if_not_exists</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     
     <span class="c1"># Decrypt env vars and load them</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">decrypt</span><span class="p">(</span><span class="n">edata</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
@@ -512,7 +508,11 @@
 <span class="sd">    edotenv_path : str</span>
 <span class="sd">        The path of the encrypted .env file.</span>
 <span class="sd">    key_path : str or None</span>
-<span class="sd">        The path to the key used to encrypt and decrypt the .env file. If ``None``, defaults to a file inside the package's directory.</span>
+<span class="sd">        The path to the key used to encrypt and decrypt the .env file.</span>
+<span class="sd">        </span>
+<span class="sd">        * If the file does not exist, then a key file will be automatically generated</span>
+<span class="sd">        * If ``None``, defaults to a file inside the package's directory</span>
+
 <span class="sd">    vars : str OR list</span>
 <span class="sd">        A list of the environmental variable names to save into the encrypted .env file.</span>
 
@@ -554,21 +554,19 @@
 <span class="sd">            print('TESTINGA value (after save): ' + str(os.environ['TESTINGA']))</span>
 <span class="sd">            print('TESTINGB value (after save): ' + str(os.environ['TESTINGB']))</span>
 <span class="sd">    """</span>
+
+    <span class="c1"># Get the key from file or gen key file if not exists</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">read_key_file</span><span class="p">(</span><span class="n">key_path</span><span class="p">)</span>
     
     <span class="c1"># Get and encrypt env vars</span>
-    <span class="n">key</span> <span class="o">=</span> <span class="n">gen_key</span><span class="p">()</span>
     <span class="nb">vars</span> <span class="o">=</span> <span class="nb">vars</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">vars</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="p">[</span><span class="nb">vars</span><span class="p">]</span>
     <span class="n">data</span> <span class="o">=</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">v</span> <span class="o">+</span> <span class="s1">'='</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="n">v</span><span class="p">])</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">vars</span><span class="p">])</span>
     <span class="n">edata</span> <span class="o">=</span> <span class="n">encrypt</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
     
     <span class="c1"># Save encrypted .env file</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">edotenv_path</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">edotenv_file</span><span class="p">:</span>
-        <span class="n">edotenv_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">edata</span><span class="p">)</span>
-    
-    <span class="c1"># Save key file</span>
-    <span class="n">key_path</span> <span class="o">=</span> <span class="n">key_path</span> <span class="k">if</span> <span class="n">key_path</span> <span class="k">else</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">__PATH__</span><span class="p">,</span> <span class="s1">'.env.key'</span><span class="p">)</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">key_path</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">key_file</span><span class="p">:</span>
-        <span class="n">key_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></div>
+        <span class="n">edotenv_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">edata</span><span class="p">)</span></div>
+        
 </pre></div>
 
           </article>

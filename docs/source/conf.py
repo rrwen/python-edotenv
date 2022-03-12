@@ -27,7 +27,7 @@ author = 'Richard Wen rrwen.dev@gmail.com'
 project = 'python-edotenv'
 description = 'Save and load environmental variables using encrypted .env files'
 copyright = str(datetime.now().year) + ', ' + 'Richard Wen'
-version = '0.0.0'
+version = '0.1.0'
 release = version
 
 # -- General configuration ------------------------------------------------
